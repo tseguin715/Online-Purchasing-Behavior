@@ -42,6 +42,16 @@ Using a 10% profit margin, a confusion matrix could be assembled in terms of rev
 |Predicted positive |0.1R | 0.1R - C| 
 | Predicted negative|-0.1R |0 | 
 
-For simplicity, we'll just use R = $1. There are other possible costs associated with some of the values, such as a customer going to other businesses for future purchases if they couldn't buy a product they intended to buy from us. However, for simplicity's sake, we'll stick with the above values for this example. Also, to reiterate, we're assuming that products bought that were not sold immediately will sell eventually; there's just a question of how long and how much the carrying cost will dig into the profit. 
+For simplicity, we could just use R = $1 (that is, every sale earns a buck of revenue). There are other possible costs associated with some of the confusion matrix values, such as a customer going to other businesses for future purchases if they couldn't buy a product they intended to buy from us. However, for simplicity's sake, we'll stick with the above values for this example. Also, to reiterate, we're assuming that products bought that were not sold immediately will sell eventually; there's just a question of how long and how much the carrying cost will dig into the profit. 
 
-To explore possible profits as well as establish a baseline model, we'll split the data into a 80:20 train:test split, train a Random Forest Classifier on the data, and compute profit curves at the range of decision thresholds for different false positive values and see what the maximum possible profits are. We'll use -0.05 (where C renders a negative profit), 0 (break-even), and 0.05 (small enough C to leave a positive profit):
+To explore possible profits as well as establish a baseline model, we'll split the data into a 80:20 train/test split, train a Random Forest Classifier on the data, and compute profit curves at the range of decision thresholds for different false positive values and see what the maximum possible profits are. We'll use -0.05 (where C renders a negative profit), 0 (break-even), and 0.05 (small enough C to leave a positive profit):
+
+From here we could just see what the maximum profits and associated decision thresholds are from the whole range of -0.1 to 0.1:
+
+The "average profit margin per session" is the total profit divided by the number of browsing sessions.
+
+It turns out that from about FP=0 onwards, max profit occurs at the threshold of zero, meaning that the best strategy in terms of maximizing profit is to invest in having a product on hand for every browsing session regardless of whether a purchase is made. At about FP = -0.1, the max profit becomes zero. The range -0.1 to 0 is where the number of products to invest in is some fraction of of the number of browsing sessions, and this is where a machine learning model could be tuned to predict the right amount of product to stock. 
+
+### Modelling: the FP = -0.05 case
+
+We could choose FP = -0.05 as a basis of modelling because it falls in the middle of the range above between where the Random Forest Classifier predicts that no profit is possible and where the max profit is associated with a sale for all sessions (FP = -0.1 to 0), but in principle any value could be chosen, e.g. based on historical averages. 
