@@ -71,7 +71,7 @@ The features were a randomly chosen set based on the number used for number of f
 
 I evaluated models with random combinations of the above parameters using 5-fold cross-validation, scoring them on MCC, precision, and recall and came up with the following results:
 
-The MCC and recall metrics aren't quite as important for our purposes, but it's interesting how the results show two pretty distinct clusters for each metric. There's something that seems to have a marked effect on model performance in general. (to be investigated a little later)
+The MCC and recall metrics aren't quite as important for our purposes, but it's interesting how the results show two pretty distinct clusters for each metric. There may be something specific that has a marked effect on model performance. (to be investigated a little later)
 
 In addition, I computed the maximum possible profit from each model and stored the corresponding decision threshold. 
 
