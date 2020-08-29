@@ -28,17 +28,17 @@ Description:
 
 How much money is earned per sale, and what are the costs associated with false positive and false negative predictions? Consider:
 
-True positive: Browsing session correctly predicted to result in sale. Money spent to acquire product; profit gained from sale without additional cost.
-False positive: Browsing session incorrectly predicted to result in sale. Money spent to acquire product; but because the sale is not immediately made, the product must be stored, incurring carrying cost prior to a possible sale later
-True negative: Browsing session correctly predicted not to result in sale. No money spent to acquire product; no profit.
-False negative: Browsing session incorrectly predicted not to result in sale. Profit is lost, because we don't have the product to make the sale when the customer would've made a purchase. 
+**True positive**: Browsing session correctly predicted to result in sale. Money spent to acquire product; profit gained from sale without additional cost.<br>
+**False positive**: Browsing session incorrectly predicted to result in sale. Money spent to acquire product; but because the sale is not immediately made, the product must be stored, incurring carrying cost prior to a possible sale later<br>
+**True negative**: Browsing session correctly predicted not to result in sale. No money spent to acquire product; no profit.<br>
+**False negative**: Browsing session incorrectly predicted not to result in sale. Profit is lost, because we don't have the product to make the sale when the customer would've made a purchase. <br>
 
 What about the false positive? If a sale is incorrectly predicted to be made, now we have inventory that must be stored, incurring cost to carry the inventory prior to an eventual sale or (worse) a disposal of the product. Let's assume the product eventually sells. How long is it stored before the sale? If stored long enough, the "profit" could turn out to be a net loss!
 
 Using a 10% profit margin, a confusion matrix could be assembled in terms of revenue R and carrying cost C per sale:
 
-| |Actual positive | Actual negative|  |
-| --- | --- | --- | ---| 
+| |Actual positive | Actual negative|  
+| --- | --- | --- | 
 |Predicted positive |0.1R | 0.1R - C| 
 | Predicted negative|-0.1R |0 | 
 
@@ -52,6 +52,29 @@ The "average profit margin per session" is the total profit divided by the numbe
 
 It turns out that from about FP=0 onwards, max profit occurs at the threshold of zero, meaning that the best strategy in terms of maximizing profit is to invest in having a product on hand for every browsing session regardless of whether a purchase is made. At about FP = -0.1, the max profit becomes zero. The range -0.1 to 0 is where the number of products to invest in is some fraction of of the number of browsing sessions, and this is where a machine learning model could be tuned to predict the right amount of product to stock. 
 
-### Modelling: the FP = -0.05 case
+### Modelling the FP = -0.05 case
 
 We could choose FP = -0.05 as a basis of modelling because it falls in the middle of the range above between where the Random Forest Classifier predicts that no profit is possible and where the max profit is associated with a sale for all sessions (FP = -0.1 to 0), but in principle any value could be chosen, e.g. based on historical averages. 
+
+We'll use the same 80:20 split from before and use the training fold to find a model that might lead to more profitable predictions than the baseline above. We'd like to try and get a better average profit per session than XXX on the test set. Because false negatives are more expensive than false positives in the scenario we're working under, we could look for a model that maximizes precision. Using 5-fold cross-validation, I evaluated models from these possible parameters:
+
+| Parameter | Value | 
+| --- | --- |
+| max depth | 2,5,7,9  |
+| min samples split | 1,2,3,4 |
+| n estimators | 25,50,100,200,500 |
+| learning rate | 0.05,0.1,0.2,0.3,0.4 |
+| SMOTE oversampling | True,False |
+| No. of features | 10-18 | 
+
+The features were a randomly chosen set based on the number used for number of features.
+
+I evaluated models with random combinations of the above parameters using 5-fold cross-validation, scoring them on MCC, precision, and recall and came up with the following results:
+
+The MCC and recall metrics aren't quite as important for our purposes, but it's interesting how the results show two pretty distinct clusters for each metric. There's something that seems to have a marked effect on model performance in general. (to be investigated a little later)
+
+In addition, I computed the maximum possible profit from each model and stored the corresponding decision threshold. 
+
+Next, the model with the best precision score was trained on the whole train split, applied to the test split, and the possible profits explored:
+
+The "max actual profit" is what it sounds like, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the training stage. The predicted profit seems to have increased from the max possible using Random Forest Classifier.
