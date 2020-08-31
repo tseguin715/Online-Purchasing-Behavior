@@ -55,6 +55,11 @@ To explore possible profits as well as establish a baseline model, we'll split t
 
 From here we could just see what the maximum profits and associated decision thresholds are from the whole range of -0.1 to 0.1:
 
+  <p align="center">
+  <img src="img/prof_range.svg" width=600><br>
+  </p>
+
+
 The "average profit margin per session" is the total profit divided by the number of browsing sessions.
 
 It turns out that from about FP=0 onwards, max profit occurs at the threshold of nearly zero, meaning that the best strategy in terms of maximizing profit is to invest in having a product on hand for every browsing session regardless of whether a purchase is made. At about FP = -0.1, the max profit (grimly) becomes zero. The range -0.1 to 0 is where the number of products to invest in is some fraction of the number of browsing sessions, and this is where a machine learning model could be tuned to predict the right amount of product to stock. 
