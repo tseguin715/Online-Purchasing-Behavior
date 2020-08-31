@@ -50,13 +50,13 @@ From here we could just see what the maximum profits and associated decision thr
 
 The "average profit margin per session" is the total profit divided by the number of browsing sessions.
 
-It turns out that from about FP=0 onwards, max profit occurs at the threshold of zero, meaning that the best strategy in terms of maximizing profit is to invest in having a product on hand for every browsing session regardless of whether a purchase is made. At about FP = -0.1, the max profit becomes zero. The range -0.1 to 0 is where the number of products to invest in is some fraction of of the number of browsing sessions, and this is where a machine learning model could be tuned to predict the right amount of product to stock. 
+It turns out that from about FP=0 onwards, max profit occurs at the threshold of nearly zero, meaning that the best strategy in terms of maximizing profit is to invest in having a product on hand for every browsing session regardless of whether a purchase is made. At about FP = -0.1, the max profit (grimly) becomes zero. The range -0.1 to 0 is where the number of products to invest in is some fraction of the number of browsing sessions, and this is where a machine learning model could be tuned to predict the right amount of product to stock. 
 
 ### Modelling the FP = -0.05 case
 
 We could choose FP = -0.05 as a basis of modelling because it falls in the middle of the range above between where the Random Forest Classifier predicts that no profit is possible and where the max profit is associated with a sale for all sessions (FP = -0.1 to 0), but in principle any value could be chosen, e.g. based on historical averages. 
 
-We'll use the same 80:20 split from before and use the training fold to find a model that might lead to more profitable predictions than the baseline above. We'd like to try and get a better average profit per session than XXX on the test set. Because false negatives are more expensive than false positives in the scenario we're working under, we could look for a model that maximizes precision. Using 5-fold cross-validation, I evaluated models from these possible parameters:
+We'll use the same 80:20 split from before and use the training fold to find a model that might lead to more profitable predictions than the baseline above. We'd like to try and get a better average profit per session than XXX on the test set. Because false negatives are more expensive than false positives in the scenario we're working under, we might consider looking for a model that maximizes recall. I evaluated models from these possible parameters:
 
 | Parameter | Value | 
 | --- | --- |
@@ -67,14 +67,14 @@ We'll use the same 80:20 split from before and use the training fold to find a m
 | SMOTE oversampling | True,False |
 | No. of features | 10-18 | 
 
-The features were a randomly chosen set based on the number used for number of features.
+The features were a randomly chosen set based on the number used for number of features, and I used 3x5-fold cross-validation (that is, scores are the average from 15 random 80:20 train/validation splits). 
 
-I evaluated models with random combinations of the above parameters using 5-fold cross-validation, scoring them on MCC, precision, and recall and came up with the following results:
+I evaluated models with random combinations of the above parameters and scored them on MCC, precision, recall, and AOC and came up with the following results:
 
-The MCC and recall metrics aren't quite as important for our purposes, but it's interesting how the results show two pretty distinct clusters for each metric. There may be something specific that has a marked effect on model performance. (to be investigated a little later)
+It's interesting how the results show two pretty distinct clusters for each metric. There may be something specific that has a marked effect on model performance, to be investigated in a below section.
 
-In addition, I computed the maximum possible profit from each model and stored the corresponding decision threshold. 
+Besides the conventional classification metrics, why not also just find the maximum profit of each model? I computed the maximum possible profit from each model and stored the corresponding decision threshold. The distribution of profits is shown here, again with the two distinct clusters of models:
 
-Next, the model with the best precision score was trained on the whole train split, applied to the test split, and the possible profits explored:
+Next, the models scoring highest on each metric was trained on the whole train split, applied to the test split, and the possible profits explored:
 
-The "max actual profit" is what it sounds like, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the training stage. The predicted profit seems to have increased from the max possible using Random Forest Classifier.
+The "max actual profit" is what it sounds like, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the training stage.
