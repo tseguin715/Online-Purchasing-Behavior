@@ -76,7 +76,7 @@ We'll use the same 80:20 split from before and use the training fold to find a m
 
 The features were a randomly chosen set based on the number used for number of features, and I used 3x5-fold cross-validation (that is, scores are the average from 15 random 80:20 train/validation splits). 
 
-I evaluated models with random combinations of the above parameters and scored them on MCC, precision, recall, and AOC and came up with the following results:
+I evaluated models with random combinations of the above parameters and scored them on MCC, precision, and recall and came up with the following results:
 
 It's interesting how the results show two pretty distinct clusters for each metric. There may be something specific that has a marked effect on model performance, to be investigated in a below section.
 
@@ -84,4 +84,14 @@ Besides the conventional classification metrics, why not also just find the maxi
 
 Next, the models scoring highest on each metric was trained on the whole train split, applied to the test split, and the possible profits explored:
 
-The "max actual profit" is what it sounds like, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the training stage.
+The "max actual profit" is what it sounds like, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the training stage. It turns out that the model optimized for XXX leads to the highest profit. This is a XX increase over the baseline Random Forest Classifier model above. 
+
+The predictions are split as follows:
+
+The number of positive (true and false) values correspond to the number of items stocked ahead of time. Here, stock was purchased for xx of the sessions, or %xx of the sessions. 
+
+The average profit value could be used to predict an actual profit using different values of R (revenue) per item as well as the number of predicted positives. The size of the test set contained XX sessions, which for R = $1 would grant a total profit of $XX, but this value could be scaled to correspond to a larger number of browsing sessions, to get an idea what the profit would be in those situations.
+
+
+
+
