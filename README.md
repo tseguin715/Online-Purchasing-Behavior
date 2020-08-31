@@ -89,6 +89,17 @@ Besides the conventional classification metrics, why not also just find the maxi
 
 Next, the models scoring highest on each metric was trained on the whole train split, applied to the test split, and the possible profits explored:
 
+<table>
+  <tr>
+    <td><img src="img/pc_MCC.svg"></td><td><img src="img/pc_recall.svg"></td>
+  </tr>
+    <tr>
+    <td><img src="img/pc_precision.svg"></td><td><img src="img/pc_profit.svg"></td>
+  </tr>
+  </table>
+  
+
+
 The "max actual profit" is what it sounds like, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the training stage. It turns out that the model optimized for XXX leads to the highest profit. This is a XX increase over the baseline Random Forest Classifier model above. 
 
 The predictions are split as follows:
