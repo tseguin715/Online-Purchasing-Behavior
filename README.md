@@ -46,6 +46,13 @@ For simplicity, we could just use R = $1 (that is, every sale earns a buck of re
 
 To explore possible profits as well as establish a baseline model, we'll split the data into a 80:20 train/test split, train a Random Forest Classifier on the data, and compute profit curves at the range of decision thresholds for different false positive values and see what the maximum possible profits are. We'll use -0.05 (where C renders a negative profit), 0 (break-even), and 0.05 (small enough C to leave a positive profit):
 
+<table>
+  <tr>
+    <td><img src="img/fp_curve_-0.05.svg"></td><td><img src="img/fp_curve_0.0.svg"></td><td><img src="img/fp_curve_0.05.svg"></td>
+  </tr>
+  </table>
+  
+
 From here we could just see what the maximum profits and associated decision thresholds are from the whole range of -0.1 to 0.1:
 
 The "average profit margin per session" is the total profit divided by the number of browsing sessions.
