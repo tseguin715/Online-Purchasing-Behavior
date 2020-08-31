@@ -60,11 +60,11 @@ We'll use the same 80:20 split from before and use the training fold to find a m
 
 | Parameter | Value | 
 | --- | --- |
-| max depth | 2,5,7,9  |
-| min samples split | 1,2,3,4 |
-| n estimators | 25,50,100,200,500 |
-| learning rate | 0.05,0.1,0.2,0.3,0.4 |
-| SMOTE oversampling | True,False |
+| max depth | 2 ,5, 7, 9  |
+| min samples split | 1, 2, 3, 4 |
+| n estimators | 25, 50, 100, 200, 500 |
+| learning rate | 0.05, 0.1, 0.2, 0.3, 0.4 |
+| SMOTE oversampling | True, False |
 | No. of features | 10-18 | 
 
 The features were a randomly chosen set based on the number used for number of features, and I used 3x5-fold cross-validation (that is, scores are the average from 15 random 80:20 train/validation splits). 
