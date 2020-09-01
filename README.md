@@ -64,7 +64,7 @@ The "average profit margin per session" is the total profit divided by the numbe
 
 It turns out that from about FP=0 onwards, max profit occurs at the threshold of nearly zero, meaning that the best strategy in terms of maximizing profit is to invest in having a product on hand for every browsing session regardless of whether a purchase is made. At about FP = -0.1, the max profit (grimly) becomes zero. The range -0.1 to 0 is where the number of products to invest in is some fraction of the number of browsing sessions, and this is where a machine learning model could be tuned to predict the right amount of product to stock. 
 
-### Modelling the FP = -0.05 case
+### Modelling the FP = -0.05 case: model evaluation
 
 We could choose FP = -0.05 as a basis of modelling because it falls in the middle of the range above between where the Random Forest Classifier predicts that no profit is possible and where the max profit is associated with a sale for all sessions (FP = -0.1 to 0), but in principle any value could be chosen, e.g. based on historical averages. 
 
@@ -92,6 +92,8 @@ I evaluated models with random combinations of the above parameters and scored t
 It's interesting how the results show two pretty distinct clusters for each metric. There may be something specific that has a marked effect on model performance, to be investigated in a below section.
 
 Besides the conventional classification metrics, why not also just find the maximum profit of each model? I computed the maximum possible profit from each model and stored the corresponding decision threshold. The distribution of profits is shown here, again with the two distinct clusters of models:
+
+### Modelling the FP = -0.05 case: performance on test set
 
 Next, the models scoring highest on each metric was trained on the whole train split, applied to the test split, and the possible profits explored:
 
