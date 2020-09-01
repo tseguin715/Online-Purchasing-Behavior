@@ -104,6 +104,10 @@ The "max actual profit" is what it sounds like, and the "max predicted profit" i
 
 The predictions are split as follows:
 
+  <p align="center">
+  <img src="img/cfm.svg" width=600><br>
+  </p>
+
 The number of positive (true and false) values correspond to the number of items stocked ahead of time. Here, stock was purchased for xx of the sessions, or %xx of the sessions. 
 
 The average profit value could be used to predict an actual profit using different values of R (revenue) per item as well as the number of predicted positives. The size of the test set contained XX sessions, which for R = $1 would grant a total profit of $XX, but this value could be scaled to correspond to a larger number of browsing sessions, to get an idea what the profit would be in those situations.
