@@ -91,7 +91,7 @@ I evaluated models with random combinations of the above parameters and scored t
 
 It's interesting how the results show two pretty distinct clusters for each metric. There may be something specific that has a marked effect on model performance, to be investigated in a below section.
 
-Besides the conventional classification metrics, why not also just find the maximum profit of each model? I computed the maximum possible profit from each model and stored the corresponding decision threshold. The distribution of profits is shown here, again with the two distinct clusters of models:
+Besides the conventional classification metrics, why not also just find the maximum profit of each model? I computed the maximum possible profit from each model and stored the corresponding decision threshold. The distribution of profits is also shown above, also with the two distinct clusters of models.
 
 ### Modelling the FP = -0.05 case: performance on test set
 
