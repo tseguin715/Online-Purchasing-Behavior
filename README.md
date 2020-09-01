@@ -146,10 +146,20 @@ This can be corroborated with SHAP, which is an industry standard for finding fe
   <img src="img/shap1.svg" width=600><br>
   </p>
   
- Again, 'PageValues' is at the top, as well as some features that appeared in the previous feature importances plot, like the November and May months. and...
+ Again, 'PageValues' is at the top, as well as some features that appeared in the previous feature importances plot, like the November and May months. 
+ 
+ One more thing we could do is go back to the model evaluation scores. Remember how the models formed distinct clusters in terms of performance for each metric? What if we labeled which ones had 'PageValues' included in the features?
 
 <table>
   <tr>
     <td><img src="img/pv1.svg"></td><td><img src="img/pv2.svg"></td>
   </tr>
   </table>
+
+The models with 'PageValues' clearly perform better, showing again the importance of this feature
+
+## Conclusions
+
+An XGBClassifier model was tuned to help inform stocking decisions in the event that false positives (false predictions of sales) incur a loss due to a carrying cost exceeding the normal profit margin. If the profit margin is 10% per product sold, and false positives lead to a -5% profit margin, then a model optimized for profitable predictions predicts that a product should be stocked for 24.45% of anticipated browsing sessions of the website. The profitability of the tuned XGBClassifier model leads to 5% more profitable predictions than the baseline Random Forest Classifier model at default parameters.
+
+In terms of what drives sales, it is abundantly clear that 'PageValues' (the number of web pages visited prior to a sale in a browsing session) is an important factor. The e-commerce website should be optimized to encourage website exploration, e.g. by making the site as visually appealing as possible, easy to browse, and the product recommendation engine optimized to encourage the visitor to explore recommended products.
