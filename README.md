@@ -148,4 +148,8 @@ This can be corroborated with SHAP, which is an industry standard for finding fe
   
  Again, 'PageValues' is at the top, as well as some features that appeared in the previous feature importances plot, like the November and May months. and...
 
-
+<table>
+  <tr>
+    <td><img src="img/pv1.svg"></td><td><img src="img/pv2.svg"></td>
+  </tr>
+  </table>
