@@ -83,6 +83,12 @@ The features were a randomly chosen set based on the number used for number of f
 
 I evaluated models with random combinations of the above parameters and scored them on MCC, precision, and recall and came up with the following results:
 
+<table>
+  <tr>
+    <td><img src="img/eval1.svg"></td><td><img src="img/eval2.svg"></td>
+  </tr>
+  </table>
+
 It's interesting how the results show two pretty distinct clusters for each metric. There may be something specific that has a marked effect on model performance, to be investigated in a below section.
 
 Besides the conventional classification metrics, why not also just find the maximum profit of each model? I computed the maximum possible profit from each model and stored the corresponding decision threshold. The distribution of profits is shown here, again with the two distinct clusters of models:
