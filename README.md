@@ -127,7 +127,7 @@ Right away, it's clear that 'PageValues' is important, i.e. the number of web pa
 This can be corroborated with SHAP, which is an 'industry standard' for finding feature contributions to model predictions. The following is a summary plot showing the feature importances and corresponding feature value:
 
   <p align="center">
-  <img src="img/shap.svg" width=600><br>
+  <img src="img/shap1.svg" width=600><br>
   </p>
   
  Again, 'PageValues' is at the top, as well as some features that appeared in the previous feature importances plot, like the November and May months. and...
