@@ -95,7 +95,15 @@ Besides the conventional classification metrics, why not also just find the maxi
 
 ### Modelling the FP = -0.05 case: performance on test set
 
-Next, the models scoring highest on each metric was trained on the whole train split, applied to the test split, and the possible profits explored:
+Next, the models were evaluated on the test set after fitting the whole train set. The following shows results using the model performing best on each metric (MCC, precision, recall) in the evaluation step vs. the baseline default Random Forest Classifier:
+
+  <p align="center">
+  <img src="img/results_bar.svg" width=600><br>
+  </p>
+
+The tuned models perform better than the baseline (expectedly) except for precision, likely because not enough parameter combinations were sampled in the training stage.
+
+However, what we're really interested in is the most profitable model. The model performing best on each of the 'conventional' metrics, in addition to the one leading to the best profit, were explored in terms of profit curves:
 
 <table>
   <tr>
@@ -108,17 +116,17 @@ Next, the models scoring highest on each metric was trained on the whole train s
   
 
 
-The "max actual profit" is what it sounds like, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the training stage. It turns out that the model optimized for XXX leads to the highest profit. This is a XX increase over the baseline Random Forest Classifier model above. 
+The "actual max profit" is the highest possible profit, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the model evaluation stage. Fittingly, the model optimized for profit makes the most profitable predictions on the test set -- an average profit margin of 0.00466, vs 0.00444 from the baseline, which is about a 5% increase.
 
-The predictions are split as follows:
+The predictions from the profit-optimized model are split as follows:
 
   <p align="center">
   <img src="img/cfm.svg" width=600><br>
   </p>
 
-The number of positive (true and false) values correspond to the number of items stocked ahead of time. Here, stock was purchased for xx of the sessions, or %xx of the sessions. 
+The number of positive (true and false) values correspond to the number of items stocked ahead of time. Here, stock was purchased for 603/2466 (24.45%) of the sessions.
 
-The average profit value could be used to predict an actual profit using different values of R (revenue) per item as well as the number of predicted positives. The size of the test set contained XX sessions, which for R = $1 would grant a total profit of $XX, but this value could be scaled to correspond to a larger number of browsing sessions, to get an idea what the profit would be in those situations.
+The average profit value could be used to predict an actual profit using different values of R (revenue) per item as well as the number of predicted positives. The size of the test set contained 2466 sessions, which for R = $1 would grant a total profit of $11.5, or if R were $100 the profit would be $1150, etc.
 
 ### What drives sales?
 
@@ -132,7 +140,7 @@ A feature importances plot from the profit-optimized model from the previous sec
   
 Right away, it's clear that 'PageValues' is important, i.e. the number of web pages visited before making a purchase.
 
-This can be corroborated with SHAP, which is an 'industry standard' for finding feature contributions to model predictions. The following is a summary plot showing the feature importances and corresponding feature value:
+This can be corroborated with SHAP, which is an industry standard for finding feature contributions to model predictions. The following is a summary plot showing the feature importances and corresponding feature value:
 
   <p align="center">
   <img src="img/shap1.svg" width=600><br>
