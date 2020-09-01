@@ -112,6 +112,24 @@ The number of positive (true and false) values correspond to the number of items
 
 The average profit value could be used to predict an actual profit using different values of R (revenue) per item as well as the number of predicted positives. The size of the test set contained XX sessions, which for R = $1 would grant a total profit of $XX, but this value could be scaled to correspond to a larger number of browsing sessions, to get an idea what the profit would be in those situations.
 
+### What drives sales?
 
+Or at least is associated with them?
+
+A feature importances plot from the profit-optimized model from the previous section gives:
+
+  <p align="center">
+  <img src="img/imp1.svg" width=600><br>
+  </p>
+  
+Right away, it's clear that 'PageValues' is important, i.e. the number of web pages visited before making a purchase.
+
+This can be corroborated with SHAP, which is an 'industry standard' for finding feature contributions to model predictions. The following is a summary plot showing the feature importances and corresponding feature value:
+
+  <p align="center">
+  <img src="img/shap.svg" width=600><br>
+  </p>
+  
+ Again, 'PageValues' is at the top, as well as some features that appeared in the previous feature importances plot, like the November and May months. and...
 
 
