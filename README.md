@@ -116,7 +116,7 @@ However, what we're really interested in is the most profitable model. The model
   
 
 
-The "actual max profit" is the highest possible profit, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the model evaluation stage. Fittingly, the model optimized for profit makes the most profitable predictions on the test set -- an average profit margin of 0.00466, vs 0.00444 from the baseline, which is about a 5% increase.
+The "actual max profit" is the highest possible profit that could have been obtained, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the model evaluation stage. Fittingly, the model optimized for profit makes the most profitable predictions on the test set -- an average profit margin of 0.00466, vs 0.00444 from the baseline, which is about a 5% increase.
 
 The predictions from the profit-optimized model are split as follows:
 
