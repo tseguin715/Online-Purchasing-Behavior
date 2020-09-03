@@ -130,10 +130,10 @@ The average profit value could be used to predict an actual profit using differe
 
 To show the profit calculation more explicitly together with the initial conditions/assumptions restated, 
 
-Revenue per sale: $1
-Cost per true positive: $0.90 (stocking cost: 90% of revenue or 10% profit margin)
-Cost per false positive: $1.05 (stocking cost plus carrying cost)
-The false negative's cost and revenue values are the opposite of the true positive, in that the "cost" is the revenue lost, and the "revenue" is the money saved not stocking the product.
+Revenue per sale: $1<br>
+Cost per true positive: $0.90 (stocking cost: 90% of revenue or 10% profit margin)<br>
+Cost per false positive: $1.05 (stocking cost plus carrying cost)<br>
+The false negative's cost and revenue values are the opposite of the true positive, in that the "cost" is the revenue lost, and the "revenue" is the money saved not stocking the product. 
 
 | Result | Number (a) | Cost (b) | Revenue (c) | Profit (a*\[c-b\]) |
 | --- | --- |  --- | --- | --- | 
