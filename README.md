@@ -137,10 +137,10 @@ The false negative's cost and revenue values are the opposite of the true positi
 
 | Result | Number (a) | Cost (b) | Revenue (c) | Profit (a*\[c-b\]) |
 | --- | --- |  --- | --- | --- | 
-| True positive | 307 | 0.9  | 1 | 0.1 | 30.7
-| False positive | 296 | 1.05  | 1 | -0.05 | -14.8
-| True negative | 1819 |  0 | 0 | 0 | 0
-| False negative | 44 |  1 | 0.9 | -0.1 | -4.4
+| True positive | 307 | 0.9  | 1 | 30.7 | 
+| False positive | 296 | 1.05  | 1 | -14.8 | 
+| True negative | 1819 |  0 | 0 | 0 | 
+| False negative | 44 |  1 | 0.9 | -4.4 | 
 
 Total profit: $11.50
 
