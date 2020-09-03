@@ -124,9 +124,27 @@ The predictions from the profit-optimized model are split as follows:
   <img src="img/cfm.svg" width=600><br>
   </p>
 
-The number of positive (true and false) values correspond to the number of items stocked ahead of time. Here, stock was purchased for 603/2466 (24.45%) of the sessions.
+The number of positive (true and false) values correspond to the number of items stocked ahead of time. Here, stock was purchased for 603/2466 (24.45%) of the sessions. 
 
-The average profit value could be used to predict an actual profit using different values of R (revenue) per item as well as the number of predicted positives. The size of the test set contained 2466 sessions, which for R = $1 would grant a total profit of $11.5, or if R were $100 the profit would be $1150, etc.
+The average profit value could be used to predict an actual profit using different values of R (revenue) per item as well as the number of predicted positives. The size of the test set contained 2466 sessions, which for R = $1 would grant a total profit of $11.5 (2466 * 0.00466 * $1), or if R were $100 the profit would be $1150, etc.
+
+To show the profit calculation more explicitly together with the initial conditions/assumptions restated, 
+
+Revenue per sale: $1
+Cost per true positive: $0.90 (stocking cost: 90% of revenue or 10% profit margin)
+Cost per false positive: $1.05 (stocking cost plus carrying cost)
+The false negative's cost and revenue values are the opposite of the true positive, in that the "cost" is the revenue lost, and the "revenue" is the money saved not stocking the product.
+
+| Result | Number (a) | Cost (b) | Revenue (c) | Profit (a*\[c-b\]) |
+| --- | --- |  --- | --- | --- | 
+| True positive | 307 | 0.9  | 1 | 0.1 | 30.7
+| False positive | 296 | 1.05  | 1 | -0.05 | -14.8
+| True negative | 1819 |  0 | 0 | 0 | 0
+| False negative | 44 |  1 | 0.9 | -0.1 | -4.4
+
+Total profit: $11.50
+
+
 
 ### What drives sales?
 
