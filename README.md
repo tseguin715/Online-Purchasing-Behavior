@@ -28,9 +28,9 @@ Description:
 
 How much money is earned per sale, and what are the costs associated with false positive and false negative predictions? Consider:
 
-**True positive**: Browsing session correctly predicted to result in sale. Money spent to acquire product; profit gained from sale without additional cost.<br>
+**True positive**: Browsing session correctly predicted to result in sale. Money spent to acquire product; revenue gained from sale without additional cost.<br>
 **False positive**: Browsing session incorrectly predicted to result in sale. Money spent to acquire product; but because the sale is not immediately made, the product must be stored, incurring carrying cost prior to a possible sale later<br>
-**True negative**: Browsing session correctly predicted not to result in sale. No money spent to acquire product; no profit.<br>
+**True negative**: Browsing session correctly predicted not to result in sale. No money spent to acquire product; no revenue.<br>
 **False negative**: Browsing session incorrectly predicted not to result in sale. Profit is lost, because we don't have the product to make the sale when the customer would've made a purchase. <br>
 
 What about the false positive? If a sale is incorrectly predicted to be made, now we have inventory that must be stored, incurring cost to carry the inventory prior to an eventual sale or (worse) a disposal of the product. Let's assume the product eventually sells. How long is it stored before the sale? If stored long enough, the "profit" could turn out to be a net loss!
@@ -128,12 +128,12 @@ The number of positive (true and false) values correspond to the number of items
 
 The average profit value could be used to predict an actual profit using different values of R (revenue) per item as well as the number of predicted positives. The size of the test set contained 2466 sessions, which for R = $1 would grant a total profit of $11.5 (2466 * 0.00466 * $1), or if R were $100 the profit would be $1150, etc.
 
-To show the profit calculation more explicitly together with the initial conditions/assumptions restated, 
+To show the profit calculation more explicitly together with the key initial conditions/assumptions restated, 
 
-Revenue per sale: $1<br>
-Cost per true positive: $0.90 (stocking cost: 90% of revenue or 10% profit margin)<br>
-Cost per false positive: $1.05 (stocking cost plus carrying cost)<br>
-The false negative's cost and revenue values are the opposite of the true positive, in that the "cost" is the revenue lost, and the "revenue" is the money saved not stocking the product. 
+- Revenue per sale: $1<br>
+- Cost per true positive: $0.90 (stocking cost: 90% of revenue or 10% profit margin)<br>
+- Cost per false positive: $1.05 (stocking cost plus carrying cost)<br>
+- The false negative's cost and revenue values are the opposite of the true positive, in that the "cost" is the revenue lost, and the "revenue" is the money saved not stocking the product. 
 
 | Result | Number (a) | Cost (b) | Revenue (c) | Profit (a*\[c-b\]) |
 | --- | --- |  --- | --- | --- | 
