@@ -44,7 +44,7 @@ Using a 10% profit margin, a confusion matrix could be assembled in terms of rev
 
 For simplicity, we could just use R = $1 (that is, every sale earns a buck of revenue). There are other possible costs associated with some of the confusion matrix values, such as a customer going to other businesses for future purchases if they couldn't buy a product they intended to buy from us. However, for simplicity's sake, we'll stick with the above values for this example. Also, to reiterate, we're assuming that products bought that were not sold immediately will sell eventually; there's just a question of how long and how much the carrying cost will dig into the profit. 
 
-To explore possible profits as well as establish a baseline model, we'll split the data into a 80:20 train/test split, train a Random Forest Classifier on the data, and compute profit curves at the range of decision thresholds for different false positive values and see what the maximum possible profits are. We'll use -0.05 (where C renders a negative profit), 0 (break-even), and 0.05 (small enough C to leave a positive profit):
+To explore possible profits as well as establish a baseline model, we'll split the data into a 80:20 train/test split, train an untuned Random Forest Classifier on the data, and compute profit curves at the range of decision thresholds for different false positive values and see what the maximum possible profits are. We'll use -0.05 (where C renders a negative profit), 0 (break-even), and 0.05 (small enough C to leave a positive profit):
 
 <table>
   <tr>
@@ -62,7 +62,7 @@ From here we could just see what the maximum profits and associated decision thr
 
 The "average profit margin per session" is the total profit divided by the number of browsing sessions.
 
-It turns out that from about FP=0 onwards, max profit occurs at the threshold of nearly zero, meaning that the best strategy in terms of maximizing profit is to invest in having a product on hand for every browsing session regardless of whether a purchase is made. At about FP = -0.1, the max profit (grimly) becomes zero. The range -0.1 to 0 is where the number of products to invest in is some fraction of the number of browsing sessions, and this is where a machine learning model could be tuned to predict the right amount of product to stock. 
+It turns out that from about FP=0 onwards, max profit occurs at the threshold of nearly zero, meaning that the best strategy here in terms of maximizing profit is to invest in having a product on hand for every browsing session regardless of whether a purchase is made. At about FP = -0.1, the max profit (grimly) becomes zero. The range -0.1 to 0 is where the number of products to invest in is some fraction of the number of browsing sessions, and this is where a machine learning model could be tuned to predict the right amount of product to stock. 
 
 ### Modelling the FP = -0.05 case: model evaluation
 
@@ -91,11 +91,11 @@ I evaluated models with random combinations of the above parameters and scored t
 
 It's interesting how the results show two pretty distinct clusters for each metric. There may be something specific that has a marked effect on model performance, to be investigated in a below section.
 
-Besides the conventional classification metrics, why not also just find the maximum profit of each model? I computed the maximum possible profit from each model and stored the corresponding decision threshold. The distribution of profits is also shown above, also with the two distinct clusters of models.
+Besides the conventional classification metrics, why not also just find the maximum profit of each model? I computed the average maximum possible profit from each model and stored the corresponding average decision threshold. The distribution of profits is also shown above, also with the two distinct clusters of models.
 
 ### Modelling the FP = -0.05 case: performance on test set
 
-Next, the models were evaluated on the test set after fitting the whole train set. The following shows results using the model performing best on each metric (MCC, precision, recall) in the evaluation step vs. the baseline default Random Forest Classifier:
+Next, the models were trained on the whole train set and evaluated on the test set. The following shows results using the model performing best on each metric (MCC, precision, recall) in the evaluation step vs. the baseline default Random Forest Classifier:
 
   <p align="center">
   <img src="img/results_bar.svg" width=600><br>
@@ -116,7 +116,7 @@ However, what we're really interested in is the most profitable model. The model
   
 
 
-The "actual max profit" is the highest possible profit that could have been obtained, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the model evaluation stage. Fittingly, the model optimized for profit makes the most profitable predictions on the test set -- an average profit margin of 0.00466, vs 0.00444 from the baseline, which is about a 5% increase.
+The "actual max profit" is the highest possible profit that could have been obtained, and the "max predicted profit" is the profit using the threshold that computed the maximum profit at the model evaluation stage. Fittingly, the model optimized for profit makes the most profitable predictions on the test set -- an average predicted profit margin of 0.00466, vs the max possible 0.00444 from the baseline, which is about a 5% increase.
 
 The predictions from the profit-optimized model are split as follows:
 
