@@ -68,7 +68,7 @@ It turns out that from about FP cost/benefit = 0 onwards, max profit occurs at t
 
 We could choose FP = -0.05 as a basis of modelling because it falls in the middle of the range above between where the Random Forest Classifier predicts that no profit is possible and where the max profit is associated with a sale for all sessions (FP = -0.1 to 0), but in principle any value could be chosen, e.g. based on historical averages. 
 
-We'll use the same 80:20 split from before and use the training fold to find a model that might lead to more profitable predictions than the baseline above. We'd like to try and get a better average profit per session than 0.00438 on the test set. Because false negatives are more expensive than false positives in the scenario we're working under, we might consider looking for a model that maximizes recall. I evaluated XGBoost models with these possible parameters:
+We'll use the same 80:20 split from before and use the training fold to find a model that might lead to more profitable predictions than the baseline above. We'd like to try and get a better average profit per session than 0.00410 on the test set. Because false negatives are more expensive than false positives in the scenario we're working under, we might consider looking for a model that maximizes recall. I evaluated XGBoost models with these possible parameters:
 
 | Parameter | Value | 
 | --- | --- |
